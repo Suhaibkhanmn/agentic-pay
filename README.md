@@ -274,9 +274,3 @@ See **[ARCHITECTURE.md](ARCHITECTURE.md)** for a comprehensive deep-dive coverin
 - Payment execution pipeline with dual idempotency
 - Data model design decisions
 - Security considerations
-
----
-
-## License
-
-MIT
