@@ -1,0 +1,25 @@
+# Optional: adds a local PostgreSQL for fully offline development.
+# Usage: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+# Then set DATABASE_URL / SYNC_DATABASE_URL to localhost:5432 in .env
+
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: agentic
+      POSTGRES_PASSWORD: agentic
+      POSTGRES_DB: agentic_payments
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agentic"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  pg_data:
